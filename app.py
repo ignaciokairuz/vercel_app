@@ -1,11 +1,25 @@
 import streamlit as st
+import pandas as pd
 
+def main():
+    st.title("Interactive Dashboard")
+    st.write("This is a simple interactive dashboard created with Streamlit.")
 
-#st.title("Hello, Vercel!")
+    # Load sample data
+    data = pd.DataFrame({
+        'x': [1, 2, 3, 4],
+        'y': [10, 20, 30, 40]
+    })
 
-#if st.checkbox("Show/Hide"):
-#    st.text("This is a checkbox example.")
+    # Create a line chart
+    st.line_chart(data)
 
-#name = st.text_input("Enter your name", "")
-#if st.button("Submit"):
-#    st.write("Hello, ", name)
+    # Create a selectbox to choose the data column to display
+    column = st.selectbox('Select a column to display', ['x', 'y'])
+
+    # Display the selected column data
+    st.write('You selected:', column)
+    st.write('Data:', data[column])
+
+if __name__ == '__main__':
+    main()
